@@ -1,3 +1,5 @@
+require 'lambda_driver'
+
 class NameIndex
   @@COLS = ["ア-オ",
            "カ-ゴ",
@@ -10,8 +12,13 @@ class NameIndex
            "ラ-ロ",
            "ワ-ン"]
 
+  def self.make_regex(col)
+    /\A[#{col}]/
+  end
+
   def self.match(name)
-    @@COLS.find {|col| name =~ /\A[#{col}]/ }.chr
+#    @@COLS.find {|col| name =~ /\A[#{col}]/ }.chr
+    @@COLS.find(&method(:make_regex) >> name.method(:=~)).chr
   end 
 
   def self.create_index(names)

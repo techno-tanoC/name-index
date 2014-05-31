@@ -1,5 +1,5 @@
 class NameIndex
-  @@COLS = ["ア-オ",
+  COLS = ["ア-オ",
            "カ-ゴ",
            "サ-ゾ",
            "タ-ド",
@@ -11,7 +11,7 @@ class NameIndex
            "ワ-ン"]
 
   def self.match(name)
-    @@COLS.find {|col| name =~ /\A[#{col}]/ }.chr
+    COLS.find {|col| name =~ /\A[#{col}]/ }.chr
   end 
 
   def self.create_index(names)
